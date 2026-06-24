@@ -1,52 +1,36 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DashboardCardsComponent } from '../../components/dashboard-cards/dashboard-cards'; 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, DashboardCardsComponent],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'],
+  styleUrls: ['./dashboard.css']
 })
-export class Dashboard implements OnInit {
- listaDeUsuarios: any[] = [];
-  mensagemErro: string = '';
+export class DashboardComponent implements OnInit {
+  usuarioNome: string = '';
+  cardsData: any[] = [];
+  carregando: boolean = true;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private cdr: ChangeDetectorRef // 1. Injetamos o detector de mudanças aqui
-  ) {}
 
-  ngOnInit(): void {
-    this.carregarUsuarios();
+  ngOnInit() {
+    this.carregarDados();
   }
 
-  carregarUsuarios(): void {
-    this.authService.listarUsuarios().subscribe({
-      next: (dadosDaApi) => {
-        // 2. Verificamos se é um array de dados válido
-        if (Array.isArray(dadosDaApi)) {
-          // 3. Colocamos os dados na variável
-          this.listaDeUsuarios = dadosDaApi;
-          
-          // 4. A CORREÇÃO MÁGICA: Avisamos o HTML para atualizar a tela neste exato segundo!
-          this.cdr.detectChanges();
-        } else {
-          this.listaDeUsuarios = [];
-        }
-      },
-      error: (erro) => {
-        this.mensagemErro = 'Falha ao buscar dados: ' + (erro.error?.erro || erro.message);
-        
-        // Avisamos o HTML caso a mensagem de erro precise aparecer
-        this.cdr.detectChanges();
-      }
-    });
-  }
-
-  fazerLogout(): void {
-    this.authService.sair(); 
-    this.router.navigate(['/login']); 
+  carregarDados() {
+    setTimeout(() => {
+      this.usuarioNome = 'Leitor';
+      
+      this.cardsData = [
+        { titulo: 'Livros Lidos', valor: 14, icone: '📚', cor: '#f472b6' },
+        { titulo: 'Lendo Agora', valor: 2, icone: '📖', cor: '#60a5fa' },
+        { titulo: 'Humor Semanal', valor: '✨ Inspirado', icone: '💖', cor: '#a78bfa' },
+        { titulo: 'Páginas Lidas', valor: 3240, icone: '🔖', cor: '#34d399' }
+      ];
+      
+      this.carregando = false; 
+    }, 800);
   }
 }

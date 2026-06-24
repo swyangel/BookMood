@@ -1,1 +1,26 @@
-<p>livros works!</p>
+<div class="pagina-container">
+  <div class="cabecalho">
+    <h2>Explorar Livros</h2>
+    <p>Encontre sua próxima leitura no BookMood</p>
+  </div>
+
+  <div *ngIf="carregando" class="loading">
+    <p>Carregando prateleiras...</p>
+  </div>
+
+  <div *ngIf="!carregando && listaDeLivros.length > 0; else semLivros" class="grid-livros">
+    
+    <app-card-livro 
+      *ngFor="let item of listaDeLivros" 
+      [livro]="item" 
+      (favoritar)="adicionarAosFavoritos($event)">
+    </app-card-livro>
+
+  </div>
+
+  <ng-template #semLivros>
+    <div class="vazio" *ngIf="!carregando">
+      <p>Nenhum livro encontrado na biblioteca no momento. 😢</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,1 +1,9 @@
-<p>dashboard-cards works!</p>
+<div class="card-fofo" [ngStyle]="{'border-bottom': '4px solid ' + cor}">
+  <div class="icone-circulo" [ngStyle]="{'background-color': cor + '22', 'color': cor}">
+    {{ icone }}
+  </div>
+  <div class="informacoes">
+    <p class="titulo-card">{{ titulo }}</p>
+    <h3 class="valor-card">{{ valor }}</h3>
+  </div>
+</div>

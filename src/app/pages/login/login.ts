@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class LoginComponent {
   loginForm: FormGroup;
 
   constructor(

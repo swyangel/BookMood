@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
   templateUrl: './cadastro.html'
 })
-export class Cadastro {
+export class CadastroComponent {
   cadastroForm: FormGroup; // Declara o formulário
 
   constructor(

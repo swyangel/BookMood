@@ -1,1 +1,13 @@
-<p>card-livro works!</p>
+<div class="card">
+  <img *ngIf="livro.capa" [src]="livro.capa" [alt]="livro.titulo" class="card-capa">
+  
+  <div class="card-corpo">
+    <h3 class="titulo">{{ livro.titulo }}</h3>
+    <p class="autor">{{ livro.autor }}</p>
+    <p class="genero">{{ livro.genero }}</p>
+  </div>
+
+  <div class="card-rodape">
+    <button class="btn-favoritar" (click)="onFavoritar()">❤️ Favoritar</button>
+  </div>
+</div>

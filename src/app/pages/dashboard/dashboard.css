@@ -1,0 +1,118 @@
+.dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #f8fafc; 
+  min-height: 100vh;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.boas-vindas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.texto-boas-vindas h2 {
+  font-size: 2.2rem;
+  color: #1e293b;
+  margin: 0 0 5px;
+}
+
+.texto-boas-vindas p {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.btn-novo-livro {
+  background-color: #a78bfa; /* Lilás */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(167, 139, 250, 0.4);
+  transition: all 0.3s;
+}
+
+.btn-novo-livro:hover {
+  background-color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.area-graficos {
+  margin-top: 20px;
+}
+
+.grafico-box {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+}
+
+.grafico-box h3 {
+  margin-top: 0;
+  color: #334155;
+  margin-bottom: 20px;
+}
+
+.grafico-placeholder {
+  height: 250px;
+  background-color: #f1f5f9;
+  border-radius: 15px;
+  border: 2px dashed #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aviso-grafico {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #a78bfa;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ede9fe;
+  border-top: 5px solid #a78bfa;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

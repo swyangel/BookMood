@@ -1,42 +1,37 @@
-<!-- src/app/pages/dashboard/dashboard.component.html -->
-
-<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;">
+<div class="dashboard-container">
   
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
-    <h2>Painel de Controle (Dashboard)</h2>
-    <!-- Botão que chama a função de deslogar -->
-    <button (click)="fazerLogout()" style="padding: 5px 15px; background-color: #ff4c4c; color: white; border: none; cursor: pointer;">
-      Sair do Sistema
-    </button>
+  <div *ngIf="carregando" class="loading-state">
+    <div class="spinner"></div>
+    <p>Carregando seu cantinho literário...</p>
   </div>
 
-  <div style="margin-top: 20px;">
-    <h3>Usuários Cadastrados no Banco de Dados:</h3>
-
-    <!-- Se houver alguma mensagem de erro de permissão, mostramos aqui -->
-    @if (mensagemErro) {
-      <div style="background-color: #ffdddd; color: red; padding: 10px; border-radius: 5px;">
-        {{ mensagemErro }}
+  <div *ngIf="!carregando" class="dashboard-content fade-in">
+    <header class="boas-vindas">
+      <div class="texto-boas-vindas">
+        <h2>Olá, {{ usuarioNome }}! 👋</h2>
+        <p>Aqui está o resumo da sua jornada literária e emocional.</p>
       </div>
-    }
+      <button class="btn-novo-livro">+ Registrar Leitura</button>
+    </header>
 
-    <!-- Estrutura de repetição moderna do Angular (@for) -->
-    <ul style="list-style-type: none; padding: 0;">
-      @for (usuario of listaDeUsuarios; track usuario.id) {
-        
-        <!-- Para cada usuário na lista, criamos um item visual -->
-        <li style="background-color: #f4f4f4; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
-          <strong>ID:</strong> {{ usuario.id }} <br>
-          <strong>E-mail:</strong> {{ usuario.email }}
-        </li>
-        
-      } @empty {
-        
-        <!-- O @empty aparece automaticamente se a listaDeUsuarios estiver vazia -->
-        <p>Carregando usuários ou nenhum usuário encontrado...</p>
-        
-      }
-    </ul>
+    <section class="grid-cards">
+      <app-dashboard-cards 
+        *ngFor="let card of cardsData" 
+        [titulo]="card.titulo" 
+        [valor]="card.valor" 
+        [icone]="card.icone" 
+        [cor]="card.cor">
+      </app-dashboard-cards>
+    </section>
+
+    <section class="area-graficos">
+      <div class="grafico-box">
+        <h3>Seu Humor nas Leituras</h3>
+        <div class="grafico-placeholder">
+          <p class="aviso-grafico">Gráfico de distribuição emocional em breve...</p>
+        </div>
+      </div>
+    </section>
+
   </div>
-
 </div>

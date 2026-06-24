@@ -1,9 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-livro',
-  imports: [],
-  templateUrl: './card-livro.html',
-  styleUrl: './card-livro.css',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './card-livro.html', 
+  styleUrls: ['./card-livro.css']
 })
-export class CardLivro {}
+export class CardLivroComponent {
+  @Input() livro: any; 
+  
+  @Output() favoritar = new EventEmitter<any>();
+
+  onFavoritar() {
+    this.favoritar.emit(this.livro);
+  }
+}

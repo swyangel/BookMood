@@ -1,9 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-cards',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dashboard-cards.html',
-  styleUrl: './dashboard-cards.css',
+  styleUrls: ['./dashboard-cards.css']
 })
-export class DashboardCards {}
+export class DashboardCardsComponent {
+  @Input() titulo: string = '';
+  @Input() valor: string | number = '';
+  @Input() icone: string = '';
+  @Input() cor: string = '#a78bfa'; 
+}
