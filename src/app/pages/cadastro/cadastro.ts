@@ -1,42 +1,32 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
-  templateUrl: './cadastro.html'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './cadastro.html',
+  styleUrls: ['./cadastro.css']
 })
 export class CadastroComponent {
-  cadastroForm: FormGroup; // Declara o formulário
+  usuario = { email: '', password: '' };
+  mensagem: string = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    // Constrói o formulário com as validações necessárias
-    this.cadastroForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+  constructor(private http: HttpClient, private router: Router) {}
+
+  cadastrar() {
+    this.http.post('http://localhost:3000/cadastro', this.usuario).subscribe({
+      next: () => {
+        this.mensagem = 'Usuário cadastrado com sucesso!';
+        setTimeout(() => this.router.navigate(['/login']), 2000);
+      },
+      error: (err) => {
+        this.mensagem = 'Erro ao cadastrar. Verifique os campos.';
+        console.error(err);
+      }
     });
-  }
-
-  onSubmit(): void {
-    if (this.cadastroForm.valid) {
-      // Pega os dados validados e envia para o Serviço
-      this.authService.cadastrarUsuario(this.cadastroForm.value).subscribe({
-        next: (resposta) => {
-          alert('Cadastro realizado com sucesso!');
-          this.router.navigate(['/login']); // Envia para o login
-        },
-        error: (erro) => {
-          alert('Erro ao cadastrar: ' + erro.error.erro);
-        }
-      });
-    }
   }
 }

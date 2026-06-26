@@ -1,43 +1,48 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]) 
+  });
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-    });
-  }
+  mensagemErro: string = '';
+  carregando: boolean = false;
 
-  onSubmit(): void {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  entrar() {
     if (this.loginForm.valid) {
+      this.carregando = true;
+      this.mensagemErro = '';
+
       this.authService.fazerLogin(this.loginForm.value).subscribe({
         next: (resposta) => {
-          // Salva o token recebido no LocalStorage
           this.authService.salvarToken(resposta.token);
-          alert('Login realizado!');
-          this.router.navigate(['/dashboard']); // Libera o acesso à área privada
+          this.router.navigate(['/dashboard']); 
         },
         error: (erro) => {
-          alert('Credenciais inválidas!');
+          this.carregando = false;
+          this.mensagemErro = 'E-mail ou senha incorretos.';
+          console.error('Erro de login:', erro);
         }
       });
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
+
+  get email() { return this.loginForm.get('email') as FormControl; }
+  get password() { return this.loginForm.get('password') as FormControl; } 
 }

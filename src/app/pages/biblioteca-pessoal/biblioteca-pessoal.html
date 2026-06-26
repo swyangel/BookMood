@@ -1,0 +1,15 @@
+<div class="dashboard-container">
+  <h1>Minha Biblioteca Pessoal 📚</h1>
+
+  <div class="grid-livros">
+    <p *ngIf="meusLivros.length === 0">Nenhum livro por aqui ainda...</p>
+
+    <div *ngFor="let livro of meusLivros" class="livro-card">
+      <h3>{{ livro.titulo }}</h3>
+      <p><strong>Autor:</strong> {{ livro.autor }}</p>
+      <div class="badge-status">
+        Status: <span>{{ livro.status }}</span>
+      </div>
+    </div>
+  </div>
+</div>

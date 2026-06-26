@@ -5,12 +5,11 @@ import { CommonModule } from '@angular/common';
   selector: 'app-card-livro',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './card-livro.html', 
+  templateUrl: './card-livro.html',
   styleUrls: ['./card-livro.css']
 })
-export class CardLivroComponent {
-  @Input() livro: any; 
-  
+export class CardLivroComponent { 
+  @Input() livro: any;
   @Output() favoritar = new EventEmitter<any>();
 
   onFavoritar() {

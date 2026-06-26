@@ -1,0 +1,10 @@
+.dashboard-container { max-width: 900px; margin: 40px auto; padding: 20px; font-family: sans-serif; }
+.grid-livros { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.livro-card { 
+  background: #fff; padding: 20px; border-radius: 15px; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #eee;
+}
+.badge-status { 
+  margin-top: 10px; padding: 5px 10px; background: #e0d7ff; 
+  color: #5b21b6; border-radius: 5px; font-weight: bold; display: inline-block;
+}

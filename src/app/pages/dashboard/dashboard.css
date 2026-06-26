@@ -116,3 +116,33 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Botão da Biblioteca Pessoal */
+.btn-biblioteca {
+  background-color: #ede9fe; /* Tom bem suave de lilás para fundo */
+  color: #7c3aed;           /* Tom forte de roxo para o texto */
+  border: 2px solid #a78bfa; /* Borda lilás para combinar */
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-biblioteca:hover {
+  background-color: #a78bfa;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(167, 139, 250, 0.3);
+}
+
+/* Ajuste para o menu que contém os botões */
+.dashboard-menu {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}

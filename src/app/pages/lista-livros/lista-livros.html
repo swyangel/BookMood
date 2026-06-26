@@ -1,0 +1,19 @@
+<div class="container">
+  <header>
+    <h1>Explorar Livros</h1>
+    <p class="subtitle">Encontre sua próxima leitura no BookMood</p>
+  </header>
+
+  <div class="grid-livros">
+    <div class="card-livro" *ngFor="let livro of livros">
+      <div class="icone-capa">{{ livro.capa }}</div>
+      <div class="info">
+        <h3>{{ livro.titulo }}</h3>
+        <p class="autor">{{ livro.autor }}</p>
+      </div>
+    <a [routerLink]="['/livros', livro.id]" class="btn-detalhes">
+  Ver detalhes
+</a>
+    </div>
+  </div>
+</div>

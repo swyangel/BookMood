@@ -1,17 +1,25 @@
 <div class="dashboard-container">
-  
   <div *ngIf="carregando" class="loading-state">
     <div class="spinner"></div>
     <p>Carregando seu cantinho literário...</p>
   </div>
 
-  <div *ngIf="!carregando" class="dashboard-content fade-in">
+  <div *ngIf="!carregando" class="fade-in">
+    
     <header class="boas-vindas">
       <div class="texto-boas-vindas">
         <h2>Olá, {{ usuarioNome }}! 👋</h2>
-        <p>Aqui está o resumo da sua jornada literária e emocional.</p>
+        <p>Gerencie suas leituras e acompanhe seu progresso.</p>
       </div>
-      <button class="btn-novo-livro">+ Registrar Leitura</button>
+      
+      <nav class="dashboard-menu">
+        <button class="btn-biblioteca" [routerLink]="['/biblioteca-pessoal']">
+          📖 Biblioteca Pessoal
+        </button>
+        <button class="btn-novo-livro" routerLink="/livros">
+          📚 Explorar Livros
+        </button>
+      </nav>
     </header>
 
     <section class="grid-cards">
@@ -32,6 +40,5 @@
         </div>
       </div>
     </section>
-
   </div>
 </div>

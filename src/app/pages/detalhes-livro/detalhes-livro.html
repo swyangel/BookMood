@@ -1,0 +1,23 @@
+<div class="pagina-container" *ngIf="livro">
+  <div class="livro-header">
+    <div class="info-principal">
+      <h1>{{ livro.titulo }}</h1>
+      <p class="autor">Por {{ livro.autor }}</p>
+      <p class="sinopse">{{ livro.sinopse || 'Nenhuma sinopse disponível para este livro.' }}</p>
+    </div>
+  </div>
+
+  <div class="acoes-biblioteca">
+    <h3>Sua Biblioteca Pessoal</h3>
+    <div class="botoes-status">
+      <button [class.ativo]="statusAtual === 'Quero Ler'" (click)="mudarStatus('Quero Ler')">Quero Ler</button>
+      <button [class.ativo]="statusAtual === 'Lendo'" (click)="mudarStatus('Lendo')">Lendo</button>
+      <button [class.ativo]="statusAtual === 'Lido'" (click)="mudarStatus('Lido')">Lido</button>
+    </div>
+    <div class="toast-mensagem" *ngIf="mensagem">{{ mensagem }}</div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="!livro">
+  Buscando detalhes do livro...
+</div>
