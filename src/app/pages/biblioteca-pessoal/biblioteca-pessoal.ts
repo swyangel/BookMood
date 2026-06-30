@@ -14,7 +14,7 @@ export class BibliotecaPessoalComponent implements OnInit {
 
   constructor(
     private bibliotecaService: BibliotecaService,
-    private cdr: ChangeDetectorRef // Injetado para forçar a atualização da tela
+    private cdr: ChangeDetectorRef 
   ) {}
 
   ngOnInit() {
@@ -25,7 +25,6 @@ export class BibliotecaPessoalComponent implements OnInit {
     this.bibliotecaService.listarBiblioteca().subscribe({
       next: (data: any) => {
         this.meusLivros = data;
-        // Força o Angular a renderizar o HTML após receber os dados
         this.cdr.detectChanges(); 
       },
       error: (err) => console.error('Erro ao carregar biblioteca:', err)

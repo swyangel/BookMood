@@ -47,4 +47,4 @@ Observações extras: Vou adicionar novas rotas e tabela para: Livros, Bibliotec
 
 -------- CONSIDERAÇÕES -----------
 
-O css desse trabalho foi 100% gerado por IA, foquei totalmente em desenvolver o Typescript por trás dessa aplicação, como pode ver, dei check em algumas coisas que consegui fazer e as outras nao foi possivel por falta de tempo, também tive apoio da IA no gerenciamento de rotas, o que mais tive dificuldade nesse trabalho. Desenvolvi tanto o FRONT quanto o BACK END desta aplicação.
+O css desse trabalho foi 100% gerado por IA, foquei totalmente em desenvolver o Typescript por trás dessa aplicação, como pode ver, dei check em algumas coisas que consegui fazer e as outras nao foi possivel por falta de tempo, também tive apoio da IA no gerenciamento de rotas, o que mais tive dificuldade nesse trabalho. Desenvolvi tanto o FRONT quanto o BACK END desta aplicação. Caso dê algum problema na hora da execução, eu tenho um vídeo mexendo na aplicação e mostrando que está funcionando.
